@@ -47,4 +47,6 @@ tiles.forEach(tile => {
     });
 });
 
+
+
 startButton.addEventListener('click', startGame);
