@@ -14,12 +14,12 @@ body{
     justify-content: center; 
     height: 100vh; 
     align-items: center; 
-    background-color: aliceblue; 
+    background-color: rgb(226, 235, 243); 
     font-family: sans-serif;
 } 
 
 .btn{ 
-    background-color: pink; 
+    background-color: rgb(241, 178, 189); 
     padding: 20px 40px; 
     border-radius: 5px; 
     box-shadow: 0 4px 8px rgba(0, 0, 0, .3); 
@@ -38,7 +38,7 @@ body{
 .btn::before {
     content: ''; 
     position: absolute; 
-    background-color: violet; 
+    background-color: rgb(194, 78, 194); 
     width: 0; 
     height: 0; 
     left: var(--xPos); 
