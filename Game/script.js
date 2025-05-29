@@ -3,9 +3,10 @@ const startButton = document.getElementById('startGame');
 let sequence = [];
 let playerSequence = [];
 let level = 0;
+let acceptingInput = false;
 
-function getRandomTile() {
-    return tiles[Math.floor(Math.random() * tiles.length)];
+function getRandomTileIndex() {
+    return Math.floor(Math.random() * tiles.length);
 }
 
 function flashTile(tile) {
@@ -14,11 +15,15 @@ function flashTile(tile) {
 }
 
 function playSequence() {
+    acceptingInput = false;
     let i = 0;
     const interval = setInterval(() => {
-        flashTile(sequence[i]);
+        flashTile(tiles[sequence[i]]);
         i++;
-        if (i >= sequence.length) clearInterval(interval);
+        if (i >= sequence.length) {
+            clearInterval(interval);
+            setTimeout(() => acceptingInput = true, 500);
+        }
     }, 1000);
 }
 
@@ -30,38 +35,27 @@ function startGame() {
 }
 
 function nextRound() {
-    sequence.push(getRandomTile());
+    playerSequence = [];
+    sequence.push(getRandomTileIndex());
     playSequence();
 }
 
-tiles.forEach(tile => {
+tiles.forEach((tile, idx) => {
     tile.addEventListener('click', () => {
-        playerSequence.push(tile);
+        if (!acceptingInput) return;
+        playerSequence.push(idx);
         if (playerSequence[playerSequence.length - 1] !== sequence[playerSequence.length - 1]) {
-            alert('Wrong sequence! Try again.');
-            startGame();
+            tile.classList.add('wrong');
+            setTimeout(() => {
+                tile.classList.remove('wrong');
+                alert('Wrong sequence! Try again.');
+                startGame();
+            }, 500);
         } else if (playerSequence.length === sequence.length) {
-            playerSequence = [];
             setTimeout(nextRound, 1000);
         }
     });
 });
-
-
-
-
-function createParticles() {
-    const particlesContainer = document.getElementById('particles');
-    for (let i = 0; i < 15; i++) {
-        const particle = document.createElement('div');
-        particle.className = 'particle';
-        particle.style.left = Math.random() * 100 + '%';
-        particle.style.animationDelay = Math.random() * 8 + 's';
-        particle.style.animationDuration = (Math.random() * 3 + 8) + 's';
-        particlesContainer.appendChild(particle);
-    }
-}
-createParticles();
 
 startButton.addEventListener('click', startGame);
 
