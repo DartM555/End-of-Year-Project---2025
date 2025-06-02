@@ -1,38 +1,4 @@
-.particles {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-        }
 
-        .particle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: rgba(120, 119, 198, 0.6);
-            border-radius: 50%;
-            animation: float-particle 8s infinite linear;
-        }
-
-        @keyframes float-particle {
-            0% {
-                transform: translateY(100vh) rotate(0deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-100px) rotate(360deg);
-                opacity: 0;
-            }
-        }
 
 
 body {
@@ -166,4 +132,57 @@ body {
                 inset 0 1px 0 rgba(255, 255, 255, 0.3);
         } 
 
-        
+
+
+
+
+        #exitGame {
+            background: linear-gradient(45deg, #7877C6, #FF77C6);
+            color: white;
+            border: none;
+            padding: 1.5rem 4rem;
+            font-size: 1.4rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 700;
+            font-family: 'Orbitron', monospace;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            box-shadow: 
+                0 15px 35px rgba(120, 119, 198, 0.4),
+                0 5px 15px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        #exitGame::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        #exitGame:hover::before {
+            left: 100%;
+        }
+
+        #exitGame:hover {
+            transform: translateY(-3px);
+            box-shadow: 
+                0 20px 40px rgba(120, 119, 198, 0.6),
+                0 10px 20px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        }  
+
+
+    #exitGame { 
+        right: 42%; 
+        bottom: -300px;
+    }
+

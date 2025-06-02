@@ -11,7 +11,7 @@ function getRandomTileIndex() {
 
 function flashTile(tile) {
     tile.classList.add('active');
-    setTimeout(() => tile.classList.remove('active'), 500);
+    setTimeout(() => tile.classList.remove('active'), 300);
 }
 
 function playSequence() {
@@ -24,7 +24,7 @@ function playSequence() {
             clearInterval(interval);
             setTimeout(() => acceptingInput = true, 500);
         }
-    }, 1000);
+    }, 500);
 }
 
 function startGame() {
@@ -71,6 +71,13 @@ startButton.addEventListener('click', startGame);
                 particlesContainer.appendChild(particle);
             }
         }
+//When the tile is clicked, it will briefly flash and then disappear to indicate which tile the player clicked
+
+
+
+
+
+
 
         // Initialize
         createParticles(10);
