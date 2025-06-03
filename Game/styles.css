@@ -186,3 +186,15 @@ body {
         bottom: -300px;
     }
 
+    .tile {
+  --glow-color: #00ff00;
+  transition: all 0.3s ease;
+}
+
+.tile.glow {
+  box-shadow: 
+    0 0 10px var(--glow-color),
+    0 0 20px var(--glow-color),
+    0 0 30px var(--glow-color);
+}
+

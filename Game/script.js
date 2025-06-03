@@ -73,7 +73,7 @@ startButton.addEventListener('click', startGame);
         }
 //When the tile is clicked, it will briefly flash and then disappear to indicate which tile the player clicked
 
-
+tiles.style.setProperty('--glow-color', '#ff0000');
 
 
 
