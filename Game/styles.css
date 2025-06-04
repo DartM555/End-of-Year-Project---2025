@@ -9,19 +9,19 @@ body {
 }
 
 #gameBoard {
-    display: grid;
+    display: grid; 
     grid-template-columns: repeat(3, 100px);
     grid-template-rows: repeat(3, 100px);
     gap: 10px;
-    justify-content: center;
-    margin-top: 20px;
+    justify-content: center; 
+    margin-top: 20px; 
 }
 
 .tile {
     width: 100px;
     height: 100px;
     background-color: rgb(20, 1, 50);
-    border-radius: 10px;
+    border-radius: b10px;
     cursor: pointer;
 }
 
@@ -198,3 +198,30 @@ body {
     0 0 30px var(--glow-color);
 }
 
+
+
+#level { 
+    font-size: 3rem; 
+    justify-content: center; 
+display: inline-block; 
+
+align-items: center;
+}
+
+#h1Level {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem; 
+            font-weight: 900;
+            background: linear-gradient(45deg, #7877C6, #FF77C6, #77C6FF, #7877C6);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradient 3s ease infinite;
+            text-shadow: 0 0 30px rgba(120, 119, 198, 0.5);
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
