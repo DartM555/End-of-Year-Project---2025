@@ -79,5 +79,6 @@ tiles.style.setProperty('--glow-color', '#ff0000');
 
 
 
+
         // Initialize
         createParticles(10);
