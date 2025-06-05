@@ -71,14 +71,55 @@ startButton.addEventListener('click', startGame);
                 particlesContainer.appendChild(particle);
             }
         }
+
+
+        
 //When the tile is clicked, it will briefly flash and then disappear to indicate which tile the player clicked
 
 tiles.style.setProperty('--glow-color', '#ff0000');
 
 
+// Add this function to update the level display
+function updateLevelDisplay() {
+    const levelDisplay = document.getElementById('h1Level');
+    levelDisplay.textContent = `LEVEL: ${level}`;
+}
 
+// Modify the startGame function
+function startGame() {
+    sequence = [];
+    playerSequence = [];
+    level = 1;
+    updateLevelDisplay(); // Add this line
+    nextRound();
+}
+
+tiles.forEach((tile, idx) => {
+    tile.addEventListener('click', () => {
+        if (!acceptingInput) return;
+        playerSequence.push(idx);
+        if (playerSequence[playerSequence.length - 1] !== sequence[playerSequence.length - 1]) {
+            tile.classList.add('wrong');
+            setTimeout(() => {
+                tile.classList.remove('wrong');
+                alert('Wrong sequence! Try again.');
+                startGame();
+            }, 500);
+        } else if (playerSequence.length === sequence.length) {
+            level++; 
+            updateLevelDisplay();
+            setTimeout(nextRound, 1000);
+        }
+    });
+});
 
 
 
         // Initialize
-        createParticles(10);
+        createParticles(10); 
+
+
+
+    //Level Counter and history 
+
+    

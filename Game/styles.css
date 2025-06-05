@@ -22,7 +22,9 @@ body {
     height: 100px;
     background-color: rgb(20, 1, 50);
     border-radius: b10px;
-    cursor: pointer;
+    cursor: pointer; 
+    border: none;
+    border-radius: 15px;
 }
 
 .tile.active {
@@ -201,11 +203,16 @@ body {
 
 
 #level { 
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform:  translate(-50%, -50%);
+    text-align: center;
+width: 100%;
+margin-top: 350px;
     font-size: 3rem; 
     justify-content: center; 
 display: inline-block; 
-
-align-items: center;
 }
 
 #h1Level {
