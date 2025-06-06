@@ -94,24 +94,6 @@ function startGame() {
     nextRound();
 }
 
-tiles.forEach((tile, idx) => {
-    tile.addEventListener('click', () => {
-        if (!acceptingInput) return;
-        playerSequence.push(idx);
-        if (playerSequence[playerSequence.length - 1] !== sequence[playerSequence.length - 1]) {
-            tile.classList.add('wrong');
-            setTimeout(() => {
-                tile.classList.remove('wrong');
-                alert('Wrong sequence! Try again.');
-                startGame();
-            }, 500);
-        } else if (playerSequence.length === sequence.length) {
-            level++; 
-            updateLevelDisplay();
-            setTimeout(nextRound, 1000);
-        }
-    });
-});
 
 
 
