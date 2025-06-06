@@ -1,10 +1,12 @@
 const tiles = document.querySelectorAll('.tile');
 const startButton = document.getElementById('startGame');
+const successSound = document.getElementById('successSound');
 let sequence = [];
 let playerSequence = [];
 let level = 0;
 let acceptingInput = false;
 
+// Core game functions
 function getRandomTileIndex() {
     return Math.floor(Math.random() * tiles.length);
 }
@@ -27,23 +29,33 @@ function playSequence() {
     }, 500);
 }
 
-function startGame() {
-    sequence = [];
-    playerSequence = [];
-    level = 1;
-    nextRound();
-}
-
 function nextRound() {
     playerSequence = [];
     sequence.push(getRandomTileIndex());
     playSequence();
 }
 
+function updateLevelDisplay() {
+    const levelDisplay = document.getElementById('h1Level');
+    levelDisplay.textContent = `LEVEL: ${level}`;
+}
+
+function startGame() {
+    sequence = [];
+    playerSequence = [];
+    level = 1;
+    updateLevelDisplay();
+    nextRound();
+}
+
+// Event Listeners
 tiles.forEach((tile, idx) => {
     tile.addEventListener('click', () => {
         if (!acceptingInput) return;
+        
         playerSequence.push(idx);
+        flashTile(tile);
+
         if (playerSequence[playerSequence.length - 1] !== sequence[playerSequence.length - 1]) {
             tile.classList.add('wrong');
             setTimeout(() => {
@@ -52,6 +64,10 @@ tiles.forEach((tile, idx) => {
                 startGame();
             }, 500);
         } else if (playerSequence.length === sequence.length) {
+            level++;
+            updateLevelDisplay();
+            successSound.currentTime = 0;
+            successSound.play().catch(err => console.log('Audio play failed:', err));
             setTimeout(nextRound, 1000);
         }
     });
@@ -59,49 +75,18 @@ tiles.forEach((tile, idx) => {
 
 startButton.addEventListener('click', startGame);
 
-
- function createParticles() {
-            const particlesContainer = document.getElementById('particles');
-            for (let i = 0; i < 15; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 8 + 's';
-                particle.style.animationDuration = (Math.random() * 3 + 8) + 's';
-                particlesContainer.appendChild(particle);
-            }
-        }
-
-
-        
-//When the tile is clicked, it will briefly flash and then disappear to indicate which tile the player clicked
-
-tiles.style.setProperty('--glow-color', '#ff0000');
-
-
-// Add this function to update the level display
-function updateLevelDisplay() {
-    const levelDisplay = document.getElementById('h1Level');
-    levelDisplay.textContent = `LEVEL: ${level}`;
+// Particle effects
+function createParticles() {
+    const particlesContainer = document.getElementById('particles');
+    for (let i = 0; i < 15; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.animationDelay = Math.random() * 8 + 's';
+        particle.style.animationDuration = (Math.random() * 3 + 8) + 's';
+        particlesContainer.appendChild(particle);
+    }
 }
 
-// Modify the startGame function
-function startGame() {
-    sequence = [];
-    playerSequence = [];
-    level = 1;
-    updateLevelDisplay(); // Add this line
-    nextRound();
-}
-
-
-
-
-        // Initialize
-        createParticles(10); 
-
-
-
-    //Level Counter and history 
-
-    
+// Initialize particles
+createParticles(10);

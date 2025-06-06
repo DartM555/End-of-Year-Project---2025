@@ -32,7 +32,7 @@ body {
 }
 .tile.wrong {
     background-color: red !important;
- /* } */
+  /* }  */
  body {
      background: linear-gradient(135deg, #0F0F23, #1A1A2E, #16213E, #0F3460);
      min-height: 100vh;
