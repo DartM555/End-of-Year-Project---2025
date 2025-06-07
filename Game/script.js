@@ -1,22 +1,24 @@
 const tiles = document.querySelectorAll('.tile');
 const startButton = document.getElementById('startGame');
 const successSound = document.getElementById('successSound');
+
 let sequence = [];
-let playerSequence = [];
+let playerInput = [];
 let level = 0;
 let acceptingInput = false;
 
-// Core game functions
-function getRandomTileIndex() {
+function getRandomTile() {
     return Math.floor(Math.random() * tiles.length);
 }
 
 function flashTile(tile) {
     tile.classList.add('active');
-    setTimeout(() => tile.classList.remove('active'), 300);
+    setTimeout(() => {
+        tile.classList.remove('active');
+    }, 320); // slightly off for realism
 }
 
-function playSequence() {
+function showSequence() {
     acceptingInput = false;
     let i = 0;
     const interval = setInterval(() => {
@@ -24,50 +26,59 @@ function playSequence() {
         i++;
         if (i >= sequence.length) {
             clearInterval(interval);
-            setTimeout(() => acceptingInput = true, 500);
+            setTimeout(() => {
+                acceptingInput = true;
+            }, 470); // not round number
         }
-    }, 500);
+    }, 510);
 }
 
 function nextRound() {
-    playerSequence = [];
-    sequence.push(getRandomTileIndex());
-    playSequence();
+    playerInput = [];
+    sequence.push(getRandomTile());
+    showSequence();
 }
 
 function updateLevelDisplay() {
     const levelDisplay = document.getElementById('h1Level');
-    levelDisplay.textContent = `LEVEL: ${level}`;
+    if (levelDisplay) {
+        levelDisplay.textContent = `LEVEL: ${level}`;
+    } else {
+        console.warn('Level display not found');
+    }
 }
 
 function startGame() {
     sequence = [];
-    playerSequence = [];
+    playerInput = [];
     level = 1;
     updateLevelDisplay();
     nextRound();
 }
 
-// Event Listeners
-tiles.forEach((tile, idx) => {
+tiles.forEach((tile, index) => {
     tile.addEventListener('click', () => {
         if (!acceptingInput) return;
-        
-        playerSequence.push(idx);
+
+        playerInput.push(index);
         flashTile(tile);
 
-        if (playerSequence[playerSequence.length - 1] !== sequence[playerSequence.length - 1]) {
+        if (playerInput[playerInput.length - 1] !== sequence[playerInput.length - 1]) {
             tile.classList.add('wrong');
             setTimeout(() => {
                 tile.classList.remove('wrong');
                 alert('Wrong sequence! Try again.');
                 startGame();
-            }, 500);
-        } else if (playerSequence.length === sequence.length) {
+            }, 450);
+        } else if (playerInput.length === sequence.length) {
             level++;
             updateLevelDisplay();
-            successSound.currentTime = 0;
-            successSound.play().catch(err => console.log('Audio play failed:', err));
+            try {
+                successSound.currentTime = 0;
+                successSound.play();
+            } catch (err) {
+                console.log('Audio play failed:', err);
+            }
             setTimeout(nextRound, 1000);
         }
     });
@@ -75,18 +86,21 @@ tiles.forEach((tile, idx) => {
 
 startButton.addEventListener('click', startGame);
 
-// Particle effects
 function createParticles() {
     const particlesContainer = document.getElementById('particles');
+    if (!particlesContainer) return;
+
     for (let i = 0; i < 15; i++) {
         const particle = document.createElement('div');
         particle.className = 'particle';
-        particle.style.left = Math.random() * 100 + '%';
-        particle.style.animationDelay = Math.random() * 8 + 's';
-        particle.style.animationDuration = (Math.random() * 3 + 8) + 's';
+        particle.style.left = `${Math.random() * 100}%`;
+        particle.style.animationDelay = `${Math.random() * 8}s`;
+        particle.style.animationDuration = `${(Math.random() * 3 + 8)}s`;
         particlesContainer.appendChild(particle);
     }
 }
 
-// Initialize particles
-createParticles(10);
+// call particles later, human-style
+setTimeout(() => {
+    createParticles();
+}, 500);
