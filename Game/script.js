@@ -78,7 +78,6 @@ function startGame() {
     nextRound();
 }
 
-// Single event listener for tiles
 tiles.forEach((tile, index) => {
     tile.addEventListener('click', () => {
         if (!acceptingInput) return;
@@ -111,7 +110,7 @@ tiles.forEach((tile, index) => {
 
 startButton.addEventListener('click', startGame);
 
-// Initialize game
+
 document.addEventListener('DOMContentLoaded', () => {
     updateRecordsDisplay();
     createParticles();
