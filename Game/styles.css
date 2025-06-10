@@ -242,3 +242,45 @@ display: inline-block;
 .level-up {
     animation: levelUp 0.5s ease-out;
 }
+
+#records {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(20, 1, 50, 0.8);
+    padding: 20px;
+    border-radius: 15px;
+    min-width: 200px;
+    z-index: 2;
+    border: 2px solid rgba(120, 119, 198, 0.3);
+    box-shadow: 0 0 20px rgba(120, 119, 198, 0.2);
+}
+
+#records h2 {
+    color: #fff;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    background: linear-gradient(45deg, #7877C6, #FF77C6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#recordsList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#recordsList li {
+    color: #fff;
+    margin: 5px 0;
+    font-size: 1rem;
+    text-align: left;
+    padding: 5px;
+    border-bottom: 1px solid rgba(120, 119, 198, 0.2);
+}
+
+
+.particles {
+    z-index: 1;
+}
