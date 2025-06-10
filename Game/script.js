@@ -3,7 +3,7 @@ const startButton = document.getElementById('startGame');
 const successSound = document.getElementById('successSound');
 
 let sequence = [];
-let playerInput = [];
+let player = [];
 let level = 0;
 let acceptingInput = false;
 
@@ -34,7 +34,7 @@ function showSequence() {
 }
 
 function nextRound() {
-    playerInput = [];
+    player = [];
     sequence.push(getRandomTile());
     showSequence();
 }
@@ -50,7 +50,7 @@ function updateLevelDisplay() {
 
 function startGame() {
     sequence = [];
-    playerInput = [];
+    player = [];
     level = 1;
     updateLevelDisplay();
     nextRound();
@@ -60,17 +60,17 @@ tiles.forEach((tile, index) => {
     tile.addEventListener('click', () => {
         if (!acceptingInput) return;
 
-        playerInput.push(index);
+        player.push(index);
         flashTile(tile);
 
-        if (playerInput[playerInput.length - 1] !== sequence[playerInput.length - 1]) {
+        if (player[player.length - 1] !== sequence[player.length - 1]) {
             tile.classList.add('wrong');
             setTimeout(() => {
                 tile.classList.remove('wrong');
                 alert('Wrong sequence! Try again.');
                 startGame();
             }, 450);
-        } else if (playerInput.length === sequence.length) {
+        } else if (player.length === sequence.length) {
             level++;
             updateLevelDisplay();
             try {
