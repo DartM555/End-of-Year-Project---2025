@@ -77,7 +77,7 @@ function startGame() {
     updateLevelDisplay();
     nextRound();
 }
-
+// Revised by AI
 tiles.forEach((tile, index) => {
     tile.addEventListener('click', () => {
         if (!acceptingInput) return;
@@ -107,7 +107,7 @@ tiles.forEach((tile, index) => {
         }
     });
 });
-
+//End of AI revision
 startButton.addEventListener('click', startGame);
 
 
@@ -115,7 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
     updateRecordsDisplay();
     createParticles();
 });
-
+// Used AI
 function createParticles() {
     const particlesContainer = document.getElementById('particles');
     if (!particlesContainer) return;
