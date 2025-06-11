@@ -185,7 +185,7 @@ body {
 
     #exitGame { 
         right: 42%; 
-        bottom: -300px;
+        bottom: -250px;
     }
 
     .tile {
@@ -284,3 +284,4 @@ display: inline-block;
 .particles {
     z-index: 1;
 }
+

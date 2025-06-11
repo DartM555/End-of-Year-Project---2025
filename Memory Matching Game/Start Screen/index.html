@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Neon Memory</title>
+    <link rel="stylesheet" href="style.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
-        
+
         * {
             margin: 0;
             padding: 0;
@@ -32,7 +33,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: 
+            background:
                 radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
                 radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.15) 0%, transparent 50%),
                 radial-gradient(circle at 40% 40%, rgba(120, 119, 198, 0.2) 0%, transparent 50%);
@@ -40,8 +41,15 @@
         }
 
         @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(1deg); }
+
+            0%,
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-20px) rotate(1deg);
+            }
         }
 
         .container {
@@ -56,7 +64,7 @@
             backdrop-filter: blur(20px);
             border-radius: 30px;
             padding: 4rem 3rem;
-            box-shadow: 
+            box-shadow:
                 0 25px 50px rgba(0, 0, 0, 0.5),
                 inset 0 1px 0 rgba(255, 255, 255, 0.1),
                 0 0 100px rgba(120, 119, 198, 0.3);
@@ -74,13 +82,18 @@
         }
 
         @keyframes glow {
-            from { filter: drop-shadow(0 0 20px rgba(120, 119, 198, 0.5)); }
-            to { filter: drop-shadow(0 0 30px rgba(255, 119, 198, 0.8)); }
+            from {
+                filter: drop-shadow(0 0 20px rgba(120, 119, 198, 0.5));
+            }
+
+            to {
+                filter: drop-shadow(0 0 30px rgba(255, 119, 198, 0.8));
+            }
         }
 
         h1 {
             font-size: 3.5rem;
-            margin-bottom: 1.5rem; 
+            margin-bottom: 1.5rem;
             font-weight: 900;
             background: linear-gradient(45deg, #7877C6, #FF77C6, #77C6FF, #7877C6);
             background-size: 300% 300%;
@@ -91,9 +104,17 @@
         }
 
         @keyframes gradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
         }
 
         .subtitle {
@@ -117,7 +138,7 @@
             font-family: 'Orbitron', monospace;
             text-transform: uppercase;
             letter-spacing: 2px;
-            box-shadow: 
+            box-shadow:
                 0 15px 35px rgba(120, 119, 198, 0.4),
                 0 5px 15px rgba(0, 0, 0, 0.3),
                 inset 0 1px 0 rgba(255, 255, 255, 0.2);
@@ -142,7 +163,7 @@
 
         .start-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 
+            box-shadow:
                 0 20px 40px rgba(120, 119, 198, 0.6),
                 0 10px 20px rgba(0, 0, 0, 0.4),
                 inset 0 1px 0 rgba(255, 255, 255, 0.3);
@@ -172,12 +193,15 @@
                 transform: translateY(100vh) rotate(0deg);
                 opacity: 0;
             }
+
             10% {
                 opacity: 1;
             }
+
             90% {
                 opacity: 1;
             }
+
             100% {
                 transform: translateY(-100px) rotate(360deg);
                 opacity: 0;
@@ -187,24 +211,23 @@
 </head>
 <body>
     <div class="particles" id="particles"></div>
-    
+
     <div class="container">
-        <!-- Welcome Screen -->
         <div id="welcomeScreen" class="welcome-screen">
             <div class="game-logo">⚡</div>
             <h1>NEON MEMORY</h1>
             <p class="subtitle">Enter the Matrix of Memory</p>
-           <a href="/Game/"><button class="start-btn">
-                <span>Initialize</span>
-            </button></a> 
-
-            <audio id="successSound" src="success.mp3" preload="auto"></audio>
-             <audio id="successSound" autoplay src="Propellerheads - Spybreak!.mp3" type="audio/mp3" ></audio> 
+            <!-- Fix the button to properly link to the game -->
+           <a href="../../../Game/index.html" class="start-link">
+                <button class="start-btn">
+                    <span>Initialize</span>
+                </button>
+            </a>
         </div>
     </div>
 
     <script>
-        // Create floating particles
+        // Add particle creation script
         function createParticles() {
             const particlesContainer = document.getElementById('particles');
             for (let i = 0; i < 15; i++) {
@@ -212,13 +235,10 @@
                 particle.className = 'particle';
                 particle.style.left = Math.random() * 100 + '%';
                 particle.style.animationDelay = Math.random() * 8 + 's';
-                particle.style.animationDuration = (Math.random() * 3 + 8) + 's';
                 particlesContainer.appendChild(particle);
             }
         }
-
-        // Initialize
-        createParticles(10);
+        document.addEventListener('DOMContentLoaded', createParticles);
     </script>
 </body>
 </html>

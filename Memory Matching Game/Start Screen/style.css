@@ -51,3 +51,7 @@ body{
     width: 300px;
     height: 300px;
  }
+ .start-btn-link {
+    text-decoration: none;
+    display: inline-block;
+}
